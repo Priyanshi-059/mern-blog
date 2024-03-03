@@ -37,8 +37,8 @@ app.listen(3000,()=>{
 // next means whenever we want to move to next middleware it will help out
 app.use((err,req,res,next)=>{
     const statuscode = err.statuscode || 500;
-    const message = err.message || 'Internal Server Error';
-    res.send(statuscode).json({
+    const message = err.message  || 'Internal error';
+    res.status(statuscode).json({
         success: false,
         statuscode,
         message
