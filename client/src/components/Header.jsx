@@ -2,16 +2,19 @@ import { Navbar,TextInput,Button, NavbarCollapse, Dropdown, Avatar, DropdownDivi
 import React from 'react';
 import { Link ,useLocation} from 'react-router-dom';
 import {AiOutlineSearch} from 'react-icons/ai';
-import {FaMoon} from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import {FaMoon, FaSun} from 'react-icons/fa';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleTheme } from '../redux/theme/themeSlice';
 
 
 export default function Header() {
   const path = useLocation().pathname;
-  const {currentUser} = useSelector(state=>state.user)
+  const dispatch = useDispatch();
+  const {currentUser} = useSelector(state=>state.user);
+  const {theme} = useSelector((state)=>state.theme);
   return (
-    <Navbar className='border-b-2 ml-5 mr-5'>
-        <Link to="/" className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
+    <Navbar className='border-b-2'>
+        <Link to="/" className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white ml-10'>
             <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>Snap</span>
             Blog
         </Link>
@@ -29,9 +32,10 @@ export default function Header() {
         </Button>
 
 
-        <div className='flex gap-2 md:order-2'>
-          <Button className='w-12 h-10 hidden sm:inline ' color='gray' pill>
-            <FaMoon/>
+        <div className='flex gap-2 md:order-2 mr-10'>
+          <Button className='w-12 h-10 hidden sm:inline ' color='gray' pill 
+          onClick ={()=>dispatch(toggleTheme())}>
+            {theme === 'light' ? <FaMoon/> : <FaSun/>}
           </Button>
           {currentUser ? 
           (
