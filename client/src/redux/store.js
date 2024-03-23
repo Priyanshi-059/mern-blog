@@ -18,6 +18,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig,rootReducer);
 
+// configure store accepts a single configuration parameters
 export const store = configureStore({
     reducer: persistedReducer,
 //   add middleware to prevent default error
