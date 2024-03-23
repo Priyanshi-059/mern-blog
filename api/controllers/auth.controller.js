@@ -49,7 +49,7 @@ export const signin = async (req,res,next)=>{
         
         // jsonwebtoken is used to authenticate the user
         const token = jwt.sign(
-            {id : validUser._id}, process.env.JWT_SECRET
+            {id : validUser._id, isAdmin:validUser.isAdmin}, process.env.JWT_SECRET
         ) 
     // to remove the password to hide from us while signing \
         const {password : pass, ...rest} = validUser._doc;
