@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import cookieParser from 'cookie-parser';
+import postRoutes from './routes/post.route.js';
 
 mongoose.connect('mongodb+srv://priyanshi:priyanshi@mern-blog.jsubdwu.mongodb.net/?retryWrites=true&w=majority&appName=mern-blog')
 .then(()=>{
@@ -34,6 +35,8 @@ app.listen(3000,()=>{
 app.use('/api/user',userRoutes)
 
 app.use('/api/auth',authRoutes)
+
+app.use('/api/post',postRoutes);
 
 // use middleware to add a function and handle the error
 // next means whenever we want to move to next middleware it will help out
